@@ -1,0 +1,65 @@
+https://santrikoding.com/tutorial-set/laravel-livewire-spa
+
+kalau datanya ribuan
+DB::table('users')->orderBy('id')->chunk(100, function ($users) {
+    foreach ($users as $user) {
+        //
+    }
+});
+jika selsai
+DB::table('users')->orderBy('id')->chunk(100, function ($users) {
+    // Process the records...
+
+    return false;
+});
+melakukan update
+DB::table('users')->where('active', false)
+    ->chunkById(100, function ($users) {
+        foreach ($users as $user) {
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['active' => true]);
+        }
+    });
+
+Aggregates => untuk perhitungan dan ada wherenya
+Selects => untuk mengecek select * nya itu
+Raw Expressions => query manual
+join =>menggabungkan table
+Where orwhere Clauses=> cek untuk ada wherenya
+Inserts
+Update Or Insert
+
+
+	// mengambil data pegawai
+    	$pegawai = Pegawai::all();	
+
+	// mengambil data pegawai yang pertama
+	$pegawai = Pegawai::first(); 
+
+	// mengambil data pegawai yang id nya 1
+	$pegawai = Pegawai::find(1); 
+
+	// mengambil data pegawai yang bernama Jamal Uwais
+	$pegawai = Pegawai::where('nama', 'Jamal Uwais')->get(); 
+
+	// mengambil data pegawai yang bernama Jamal Uwais
+	$pegawai = Pegawai::where('nama', '=' , 'Jamal Uwais')->get(); 
+
+// mengambil data pegawai yang bernama Jamal Uwais
+$pegawai = Pegawai::where('nama', '=' , 'Jamal Uwais')->get(); 
+
+// mengambil data pegawai yang id nya lebih besar sama dengan 10 
+$pegawai = Pegawai::where('id', '>=' , 10)->get();
+
+// mengambil data pegawai yang di namanya ada huruf a 
+$pegawai = Pegawai::where('nama', 'like' , '%a%')->get();
+
+// menampilkan 10 data pegawai per halaman
+$pegawai = Pegawai::paginate(10);
+
+
+
+
+// mengirim data pegawai ke view pegawai 
+	return view('pegawai', ['pegawai' => $pegawai]); 
